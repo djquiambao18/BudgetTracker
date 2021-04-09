@@ -17,12 +17,12 @@
          <children>
             <Button fx:id="button_Home" alignment="CENTER" mnemonicParsing="false" prefHeight="98.0" prefWidth="107.0" style="-fx-background-color: #88EAAA; -fx-border-color: white; -fx-border-radius: 20%;" text="Home">
                <font>
-                  <Font name="Segoe UI" size="12.0" />
+                  <Font name="Monaco" size="12.0" />
                </font>
             </Button>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="101.0" prefWidth="804.0" style="-fx-background-color: #88EAAA;" text="Log Expenses" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                <font>
-                  <Font name="Segoe UI Bold" size="28.0" />
+                  <Font name="Monaco" size="28.0" />
                </font>
             </Label>
          </children>
@@ -51,7 +51,7 @@
                         <Insets bottom="30.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="button_SubItem" fx:id="button_subItem" alignment="CENTER" mnemonicParsing="false" prefHeight="65.0" prefWidth="230.0" text="Subtract Item From List">
+                  <Button id="button_SubItem" fx:id="button_subItem" alignment="CENTER" mnemonicParsing="false" onAction="#subtractItemClick" prefHeight="65.0" prefWidth="230.0" text="Subtract Item From List">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>
