@@ -5,17 +5,24 @@
 
 package BudgetTracker;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class ExpensesController implements Initializable {
     @FXML
@@ -29,9 +36,9 @@ public class ExpensesController implements Initializable {
     @FXML
     private final ObservableList<Expenses> expenseList = FXCollections.observableArrayList();
     @FXML
-    private TableColumn col_Cost = new TableColumn("Amount ($)");
+    private final TableColumn col_Cost = new TableColumn("Amount ($)");
     @FXML
-    private TableColumn col_itemName = new TableColumn("Item Name");
+    private final TableColumn col_itemName = new TableColumn("Item Name");
     @FXML
     private TableView<Expenses> table_view;
 
@@ -60,6 +67,22 @@ public class ExpensesController implements Initializable {
     public void subtractItemClick(){
         Expenses selected = table_view.getSelectionModel().getSelectedItem();
         table_view.getItems().remove(selected);
+    }
+
+    @FXML Button changeScreenToHomebtn;
+    public void changeScreenToHome(ActionEvent event) throws IOException
+    {
+
+        Parent setHomeParent = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Scene setHomeScene = new Scene (setHomeParent);
+
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(setHomeScene);
+        window.show();
+
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {

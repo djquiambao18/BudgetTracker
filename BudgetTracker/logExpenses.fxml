@@ -15,7 +15,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="98.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="button_Home" alignment="CENTER" mnemonicParsing="false" prefHeight="98.0" prefWidth="107.0" style="-fx-background-color: #88EAAA; -fx-border-color: white; -fx-border-radius: 20%;" text="Home">
+            <Button fx:id="button_Home" alignment="CENTER" mnemonicParsing="false" prefHeight="98.0" prefWidth="107.0" onAction="#changeScreenToHome" style="-fx-background-color: #88EAAA; -fx-border-color: white; -fx-border-radius: 20%;" text="Home">
                <font>
                   <Font name="Monaco" size="12.0" />
                </font>
@@ -38,7 +38,7 @@
                         <TextField fx:id="field_name" prefHeight="25.0" prefWidth="230.0" promptText="Item Name" />
                      </children>
                   </HBox>
-                  <TextField fx:id="field_cost" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="209.0" promptText="Item cost (Ex: $1.25)">
+                  <TextField fx:id="field_cost" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="209.0" promptText="Item cost (Ex: 1.25)">
                      <VBox.margin>
                         <Insets right="20.0" top="10.0" />
                      </VBox.margin>
