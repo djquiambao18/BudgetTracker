@@ -57,6 +57,11 @@ public class ExpensesController implements Initializable {
 
     }
 
+    public void subtractItemClick(){
+        Expenses selected = table_view.getSelectionModel().getSelectedItem();
+        table_view.getItems().remove(selected);
+    }
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.col_Cost.setPrefWidth(172.0D);
         this.col_Cost.setResizable(false);
