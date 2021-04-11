@@ -40,7 +40,7 @@ public class ExpensesController implements Initializable {
         try 
         {
             //If the string matches the regex that is recognizable decimal digits.
-            if (str_cost.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})") && !str_name.isEmpty()) 
+            if (str_cost.matches("\\${0,1}[0-9]+\\.{0,1}([0-9]{0,2})") && !str_name.isEmpty())
             {
                 this.expenseList.add(new Expenses(str_name, Double.parseDouble(str_cost)));
                 this.field_cost.clear();
@@ -54,7 +54,7 @@ public class ExpensesController implements Initializable {
                 Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
                 invalid_alert.setTitle("Invalid Input!");
                 invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
-                invalid_alert.showAndWait();
+                invalid_alert.showAndWait();    //waits for user input to press OK to continue
             }
         } 
         
@@ -65,19 +65,20 @@ public class ExpensesController implements Initializable {
 
     }
 
+    //this method removes the item from the table when highlighted on
     public void subtractItemClick()
     {
         Expenses selected = table_view.getSelectionModel().getSelectedItem();
         table_view.getItems().remove(selected);
     }
 
-   
+
+    //this method is called when the home button is clicked
     public void changeScreenToHome(ActionEvent event) throws IOException
     {
 
         Parent setHomeParent = FXMLLoader.load(getClass().getResource("../home.fxml"));
         Scene setHomeScene = new Scene (setHomeParent);
-
 
         //This line gets the Stage information
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -87,6 +88,7 @@ public class ExpensesController implements Initializable {
 
     }
 
+    //Initializes the expenses controller
     public void initialize(URL url, ResourceBundle resourceBundle) 
     {
         this.col_Cost.setPrefWidth(172.0D);
