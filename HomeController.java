@@ -1,5 +1,4 @@
-package HomePage;
-
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,16 +10,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class HomeController implements Initializable {
-    @FXML private Button button_settings;
-    @FXML private Button button_logExpenses;
-    @FXML private Button button_summary;
+    //Buttons for future implementations
+    @FXML
+    private Button button_settings;
+    @FXML
+    private Button button_logExpenses;
+    @FXML
+    private Button button_summary;
     @FXML private Button button_saveFile;
     @FXML private ProgressBar progressBar;
     @FXML private Label label_balanceFraction;
@@ -30,21 +31,56 @@ public class HomeController implements Initializable {
 
     // returns the percent in decimal form to the FXML file in ProgressBar progress
     public double getPercent() {
-        return percent ;
+        return percent;
     }
+    @FXML
+    public void changeScreenExpenses(ActionEvent event) throws IOException {
+        Parent setExpenseParent = FXMLLoader.load(getClass().getResource("Expenses/logExpenses.fxml"));
+        Scene setExpenseScene = new Scene(setExpenseParent);
 
-    public void changeScreenExpenses(ActionEvent event) throws IOException
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(setExpenseScene);
+        window.show();
+    }
+    @FXML
+    private Button changeScreenInputIncomebtn;
+    /* when this method is called, it will change the scene to
+     * inputIncome
+     */
+    public void changeScreenToInputIncome(ActionEvent event) throws IOException
     {
-        Parent setBudgetParent = FXMLLoader.load(getClass().getResource("logExpenses.fxml"));
-        Scene setBudgetScene = new Scene (setBudgetParent);
+        Parent inputIncomeParent = FXMLLoader.load(getClass().getResource("Income/inputIncome.fxml"));
+        Scene inputIncomeScene = new Scene (inputIncomeParent);
+
 
         //This line gets the Stage information
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(setBudgetScene);
+
+        window.setScene(inputIncomeScene);
         window.show();
     }
 
+    @FXML
+    private Button changeScreenSetBudgetbtn;
+    /* when this method is called, it will change the scene to
+     * setBudget
+     */
+	public void changeScreenToSetBudget(ActionEvent event) throws IOException
+	{
+		Parent setBudgetParent = FXMLLoader.load(getClass().getResource("Budget/setBudget.fxml"));
+		Scene setBudgetScene = new Scene (setBudgetParent);
+
+
+		//This line gets the Stage information
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+		window.setScene(setBudgetScene);
+		window.show();
+	}
+
     // used to split a string fraction (ie. 2/3) into a decimal value ** CAN DELETE IF NOT USED
+    //Will be used for future progress bar
     public String[] splitFraction() {
         String[] splitFract = {};
         double dbl = -0.999;
@@ -63,6 +99,7 @@ public class HomeController implements Initializable {
 
         label_balanceFraction.setText(num + "/1500");  // test value, can delete
 
+        //FOLLOWING CODE will be used for future implementations
         // bind the fraction label to the progress bar percentage
         // my attempt here failed bc the label gets affected by the progress bar
         // .setProgress(num) (num ranges from 0.0-1.0) where 1.0 is 100%
@@ -74,6 +111,7 @@ public class HomeController implements Initializable {
          */
     }
 
+    //
     // used for just testing the progress bar animation. click on the summary button to launch method
     public void click(ActionEvent actionEvent) {
         //percent += 0.05;    // increase progress bar by 5%
@@ -84,3 +122,64 @@ public class HomeController implements Initializable {
         //System.out.println("progress bar percent" + progressBar.progressProperty().getValue());
     }
 }
+/*
+import javafx.stage.Stage;
+
+public class HomeController 
+{
+
+	@FXML 
+	private Button changeScreenSetBudgetbtn;
+	/* when this method is called, it will change the scene to
+	 * setBudget
+	 *
+	public void changeScreenToSetBudget(ActionEvent event) throws IOException
+	{
+		Parent setBudgetParent = FXMLLoader.load(getClass().getResource("setBudget.fxml"));
+		Scene setBudgetScene = new Scene (setBudgetParent);
+		
+		
+		//This line gets the Stage information
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(setBudgetScene);
+		window.show();
+	}
+
+	@FXML 
+	private Button changeScreenInputIncomebtn;
+	/* when this method is called, it will change the scene to
+	 * inputIncome
+	 *
+	public void changeScreenToInputIncome(ActionEvent event) throws IOException
+	{
+		Parent inputIncomeParent = FXMLLoader.load(getClass().getResource("inputIncome.fxml"));
+		Scene inputIncomeScene = new Scene (inputIncomeParent);
+		
+		
+		//This line gets the Stage information
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(inputIncomeScene);
+		window.show();
+	}
+	
+	
+	@FXML 
+	private Button changeScreenLogExpensesbtn;
+	/* when this method is called, it will change the scene to
+	 * logExpense
+	 *
+	public void changeScreenToLogExpenses(ActionEvent event) throws IOException
+	{
+		Parent logExpensesParent = FXMLLoader.load(getClass().getResource("logExpenses.fxml"));
+		Scene logExpensesScene = new Scene (logExpensesParent);
+		
+		
+		//This line gets the Stage information
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(logExpensesScene);
+		window.show();
+	}
+}*/
