@@ -1,6 +1,6 @@
 package Expenses;
 
-public class Expenses 
+public class Expenses<String>
 {
 	private String itemName;
     private double itemCost;
