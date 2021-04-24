@@ -33,6 +33,8 @@ public class ExpensesController implements Initializable {
     private final TableColumn col_Cost = new TableColumn("Amount ($)");
     @FXML
     private final TableColumn col_itemName = new TableColumn("Item Name");
+    @FXML
+    private final TableColumn col_category = new TableColumn("Category");
     @FXML   //is used in tandem with the expenseList var
     private TableView<Expenses> table_view;
     @FXML private ComboBox category_comboBox;
@@ -122,13 +124,17 @@ public class ExpensesController implements Initializable {
     //Initializes the expenses controller
     public void initialize(URL url, ResourceBundle resourceBundle) 
     {
-        this.col_Cost.setPrefWidth(172.0D);
+        this.col_Cost.setPrefWidth(105.0D);
         this.col_Cost.setResizable(false);
         this.col_Cost.setCellValueFactory(new PropertyValueFactory("itemCost"));
-        this.col_itemName.setPrefWidth(266.0D);
+        this.col_itemName.setPrefWidth(250.0D);
         this.col_itemName.setResizable(false);
         this.col_itemName.setCellValueFactory(new PropertyValueFactory("itemName"));
-        this.table_view.getColumns().addAll(col_Cost, col_itemName);
+        this.col_category.setPrefWidth(118.0D);
+        this.col_category.setResizable(false);
+        this.col_category.setCellValueFactory(new PropertyValueFactory("itemCategory"));
+
+        this.table_view.getColumns().addAll(col_Cost, col_itemName,col_category);
         this.table_view.setEditable(true);
         category_comboBox.setItems(categoryList);
         category_comboBox.getSelectionModel().selectFirst();
