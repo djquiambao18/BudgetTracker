@@ -21,30 +21,43 @@ public class SummaryController implements Initializable {
     @FXML private PieChart pieChart;
     @FXML private Button changeScreenHomeBtn;
     @FXML private Button changeScreenSummaryBtn;
-    private static int counter = 0;
-    double tempValue = 16.6;
+    double tempValue = 0.0;
     @FXML
-    ObservableList<PieChart.Data> pieChart_data =
-            FXCollections.observableArrayList(
-                    new PieChart.Data("Groceries", Expenses.getExpensesTable().get(0).getItemCost()),
+    static ObservableList<PieChart.Data> pieChart_data;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        if(Expenses.getExpensesTable() != null){
+            pieChart_data = FXCollections.observableArrayList(
+                    new PieChart.Data("Groceries", Expenses.getTotalGrocery()),
+                    new PieChart.Data("Rent and Utilities", Expenses.getTotalUtil_Rent()),
+                    new PieChart.Data("Restaurants", Expenses.getTotalRestaurants()),
+                    new PieChart.Data("Merchandise", Expenses.getTotalMerchandise()),
+                    new PieChart.Data("Transportation", Expenses.getTotalTransportation()),
+                    new PieChart.Data("Other", Expenses.getTotalOthers())
+            );
+        }
+        else
+        {
+            pieChart_data = FXCollections.observableArrayList(
+                    new PieChart.Data("Groceries", tempValue),
                     new PieChart.Data("Rent and Utilities", tempValue),
                     new PieChart.Data("Restaurants", tempValue),
                     new PieChart.Data("Merchandise", tempValue),
                     new PieChart.Data("Transportation", tempValue),
                     new PieChart.Data("Other", tempValue)
             );
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+        }
         pieChart.setData(pieChart_data);
-        if(Expenses.getExpensesTable().get(0) != null)
-        System.out.println(Expenses.getExpensesTable().get(counter));
 
     }
 
     // when this method is called, it will change the scene to home page
     public void changeScreenToHome(ActionEvent event) throws IOException
     {
+
         Parent setHomeParent = FXMLLoader.load(getClass().getResource("../home.fxml"));
         Scene setHomeScene = new Scene (setHomeParent);
 

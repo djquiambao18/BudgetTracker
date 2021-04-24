@@ -10,19 +10,26 @@ public class Expenses
     private double itemCost;
     private String itemCategory;
     private double monthlyExpense;
-    private double rentExpense;
-    private double utilitiesExpense;
+    private static double rentExpense;
+    private static double utilitiesExpense;
     private double subscriptionExpense;
     private double withdrawalAmount;
     private static ArrayList<Expenses> expensesTable;
+    //Following variables: To hold the data from Log Expenses feature.
+    //They will also help with displaying on the Summary pages properly
+    private static double totalGrocery;
+    private static double totalMerchandise;
+    private static double totalRestaurants;
+    private static double totalTransportation;
+    private static double totalOthers;
 
     Expenses() 
     {}
 
     Expenses(double rent, double utilities, double subscriptionExpense)
     {
-        this.rentExpense = rent;
-        this.utilitiesExpense = utilities;
+        rentExpense = rent;
+        utilitiesExpense = utilities;
         this.subscriptionExpense = subscriptionExpense;
     }
 
@@ -67,24 +74,41 @@ public class Expenses
         this.monthlyExpense = monthlyExpense;
     }
 
-    public double getRentExpense() 
+    public static double getRentExpense()
     {
-        return this.rentExpense;
+        return rentExpense;
     }
 
-    public void setRentExpense(double rentExpense) 
+    public static void setRentExpense()
     {
-        this.rentExpense = rentExpense;
+        double rent = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Rent"))
+            {
+                rent += exp.getItemCost();
+            }
+        }
+        rentExpense = rent;
     }
 
-    public double getUtilitiesExpense() 
+    public static double getUtilitiesExpense()
     {
-        return this.utilitiesExpense;
+        return utilitiesExpense;
     }
 
-    public void setUtilitiesExpense(double utilitiesExpense)
+    public static void setUtilitiesExpense()
     {
-        this.utilitiesExpense = utilitiesExpense;
+        double utilities = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Utilities"))
+            {
+                utilities += exp.getItemCost();
+            }
+        }
+        utilitiesExpense = utilities;
+    }
+    public static double getTotalUtil_Rent(){
+        return (utilitiesExpense + rentExpense);
     }
 
     public double getSubscriptionExpense() 
@@ -111,7 +135,83 @@ public class Expenses
         return expensesTable;
     }
 
-    //public static double GroceriesTotal
+    //--- Getters and Setters for the SUMMARY Pages Totals in each category
+    //Sets the total grocery expense for use with Summary.
+    public static void setTotalGrocery(){
+        double groceryTotal = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Groceries"))
+            {
+                groceryTotal += exp.getItemCost();
+            }
+        }
+        totalGrocery = groceryTotal;
+    }
+
+    public static double getTotalGrocery(){
+        return totalGrocery;
+    }
+
+    public static void setTotalMerchandise(){
+        double merchandiseTotal = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Merchandise"))
+            {
+                merchandiseTotal += exp.getItemCost();
+            }
+        }
+        totalMerchandise = merchandiseTotal;
+    }
+    public static double getTotalMerchandise() {
+        return totalMerchandise;
+    }
+
+    public static void setTotalRestaurants(){
+        double restaurant = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Restaurants"))
+            {
+                restaurant += exp.getItemCost();
+            }
+        }
+        totalRestaurants = restaurant;
+    }
+
+
+    public static double getTotalRestaurants() {
+        return totalRestaurants;
+    }
+
+    public static void setTotalTransportation(){
+        double transport = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Restaurants"))
+            {
+                transport += exp.getItemCost();
+            }
+        }
+        totalTransportation = transport;
+    }
+
+    public static double getTotalTransportation() {
+        return totalTransportation;
+    }
+
+    public static void setTotalOthers(){
+        double others = 0.0;
+        for (Expenses exp : expensesTable) {
+            if(exp.getItemCategory().equals("Restaurants"))
+            {
+                others += exp.getItemCost();
+            }
+        }
+        totalOthers = others;
+    }
+
+    public static double getTotalOthers() {
+        return totalOthers;
+    }
+
     public static void setExpensesTable(ArrayList<Expenses> expenses){
         expensesTable = expenses;
     }

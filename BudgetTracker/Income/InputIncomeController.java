@@ -41,7 +41,7 @@ public class InputIncomeController
 	public static String str_hourlyWage;
 	public static String str_hoursWorked;
 
-	Income income = new Income();
+	public static Income income = new Income();
 
 	@FXML
 	/* when this method is called, it will change the scene to
@@ -59,37 +59,6 @@ public class InputIncomeController
 		window.setScene(setHomeScene);
 		window.show();
 	}
-	
-
-	/*
-	 * when the user finishes typing its hourlyWage and hoursWorked and clicks on the Calculate Wages button, 
-	 * this method will calculate the wages earned and display the result. 
-	 *
-
-	public void calculateWagesEarnedClick()
-	{
-		str_hourlyWage 	= this.field_hourlyWage.getText();
-		str_hoursWorked	= this.field_hoursWorked.getText();
-		
-		 try 
-	        {
-	            if (str_hourlyWage.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})"))
-	            		//&& str_hourlyWage.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})"))
-	            {
-	            	/*
-	            	Income wages = new Income(Double.parseDouble(str_hourlyWage), Double.parseDouble(str_hoursWorked));
-	            	wages.wageEarnings();
-	     		 	label_wagesEarned.setText("Wages Earned = " + (wages.getWageEarnings()));
-
-	            }
-	        }
-	        
-	        catch (Exception e)
-	        {
-	            e.getStackTrace();
-	        }
-		 
-	}*/
 
 	public void calculateWagesEarnedClick()
 	{
@@ -107,7 +76,6 @@ public class InputIncomeController
 			invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
 			invalid_alert.showAndWait();
 		}
-
 	}
 
 	/*
@@ -145,10 +113,10 @@ public class InputIncomeController
 	 */
 	public void displayTotalCashBalanceOnHandClick()
 	{
-		Alert alert_sucess = new Alert(Alert.AlertType.INFORMATION);
-		alert_sucess.setTitle("Total Cash Balance On Hand");
-		alert_sucess.setContentText("Cash balance on hand: " + income.getTotalIncomeBalance());
-		alert_sucess.showAndWait();
+		Alert alert_success = new Alert(Alert.AlertType.INFORMATION);
+		alert_success.setTitle("Total Cash Balance On Hand");
+		alert_success.setContentText("Cash balance on hand: " + income.getTotalIncomeBalance());
+		alert_success.showAndWait();
 
 	}
 
@@ -168,10 +136,10 @@ public class InputIncomeController
 			{
 				income.setDepositAmount(Double.parseDouble(str_cashAmount));
 				income.depositCash();
-				Alert alert_sucess = new Alert(Alert.AlertType.INFORMATION);
-				alert_sucess.setTitle("Success!");
-				alert_sucess.setContentText("You have deposited your cash amount successfully.");
-				alert_sucess.showAndWait();
+				Alert alert_success = new Alert(Alert.AlertType.INFORMATION);
+				alert_success.setTitle("Success!");
+				alert_success.setContentText("You have deposited your cash amount successfully.");
+				alert_success.showAndWait();
 			}
 			else
 			{
@@ -221,10 +189,10 @@ public class InputIncomeController
 		{
 			income.setWageEarnings(incomeWages);
 			income.depositWages();
-			Alert alert_sucess = new Alert(Alert.AlertType.INFORMATION);
-			alert_sucess.setTitle("Success!");
-			alert_sucess.setContentText("You have deposited your earned wages successfully.");
-			alert_sucess.showAndWait();
+			Alert alert_success = new Alert(Alert.AlertType.INFORMATION);
+			alert_success.setTitle("Success!");
+			alert_success.setContentText("You have deposited your earned wages successfully.");
+			alert_success.showAndWait();
 		}
 		else
 		{

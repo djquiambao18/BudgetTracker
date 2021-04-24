@@ -37,9 +37,9 @@ public class ExpensesController implements Initializable {
     private TableView<Expenses> table_view;
     @FXML private ComboBox category_comboBox;
     @FXML private final ObservableList<String> categoryList = FXCollections
-            .observableArrayList("Choose a category for your item", "Groceries",
+            .observableArrayList("Choose a category for your item", "Groceries", "Rent", "Utilities",
                     "Merchandise","Restaurants", "Transportation", "Other");
-    private File tempData;
+    //private File tempData;
     private ArrayList<Expenses> dataList;
     private static int counter = 0;
 
@@ -57,7 +57,7 @@ public class ExpensesController implements Initializable {
                 this.table_view.setItems(this.expenseList);
                 dataList.add(expenseList.get(counter++));
                 Expenses.setExpensesTable(dataList);
-                System.out.println(Expenses.getExpensesTable().get(counter-1));
+                //System.out.println(Expenses.getExpensesTable().get(counter-1));
 
                 }
              else {
@@ -99,8 +99,16 @@ public class ExpensesController implements Initializable {
     public void changeScreenToHome(ActionEvent event) throws IOException
     {
         User userData = new User();
+        //Updates the Expenses Table List using the User class static method set User Expense, and passing in the local dataList variable
         User.setUserExpense(dataList);
-        SaveFile.save(userData);
+        Expenses.setTotalGrocery();
+        Expenses.setTotalMerchandise();
+        Expenses.setRentExpense();
+        Expenses.setUtilitiesExpense();
+        Expenses.setTotalRestaurants();
+        Expenses.setTotalTransportation();
+        Expenses.setTotalOthers();
+        //SaveFile.save(userData);
         Parent setHomeParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../home.fxml")));
         Scene setHomeScene = new Scene (setHomeParent);
 
