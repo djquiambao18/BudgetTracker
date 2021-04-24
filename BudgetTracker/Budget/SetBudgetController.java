@@ -43,8 +43,8 @@ public class SetBudgetController
 		LocalDate startValue = startDate.getValue();
 
 		System.out.println(startValue.getDayOfMonth() + " " + startValue.getMonth() + " " + startValue.getYear());
-		User.setUserData();
-		User.userData.setTermLength();
+		//User.setUserData();
+		//User.userData.setTermLength();
 	}
 
 

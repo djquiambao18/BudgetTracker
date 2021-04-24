@@ -8,6 +8,10 @@ public class Income
 	private double depositCashAmount;
 	private double totalCashBalance = 0;
 
+	public Income()
+	{
+
+	}
 	public Income(double hourlyWage, double hoursWorked)
 	{
 		this.hourlyWage = hourlyWage;
@@ -42,6 +46,14 @@ public class Income
 	}
 
 
+	//when called, wageEarnings amount is passed without having to calculate
+	public void setWageEarnings(double wageEarnings)
+	{
+		this.wageEarnings = wageEarnings;
+	}
+
+
+	//calculates wageEarnings
 	public void wageEarnings()
 	{
 		wageEarnings = hourlyWage * hoursWorked;

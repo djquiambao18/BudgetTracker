@@ -66,16 +66,16 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="9.0" layoutY="417.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="426.0" text="Display Total Cash Balance On Hand" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="button_DisplayTotalCashBalanceOnHand" layoutX="9.0" layoutY="375.0" mnemonicParsing="false" onAction="#displayTotalCashBalanceOnHandClick" prefHeight="150.0" prefWidth="426.0" text="Display Total Cash Balance On Hand" textAlignment="CENTER" wrapText="true">
                      <effect>
                         <ColorAdjust brightness="-0.12" />
                      </effect>
                      <font>
                         <Font name="Monaco" size="25.0" />
                      </font></Button>
-                  <Button layoutX="64.0" layoutY="293.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="335.0" style="-fx-background-color: #88EAAA;" text="Deposit Cash Amount to Balance" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="button_depositCashAmountToBalance" layoutX="21.0" layoutY="227.0" mnemonicParsing="false" onAction="#depositCashAmountClick" prefHeight="111.0" prefWidth="205.0" style="-fx-background-color: #88EAAA;" text="Deposit Cash Amount to Balance" textAlignment="CENTER" wrapText="true">
                      <font>
-                        <Font name="Monaco" size="22.0" />
+                        <Font name="Monaco" size="15.0" />
                      </font>
                   </Button>
                   <Label layoutX="21.0" layoutY="10.0" prefHeight="106.0" prefWidth="238.0" text="Enter Cash Amount Not Related to Salary/Wages:" wrapText="true">
@@ -83,8 +83,13 @@
                         <Font name="Monaco" size="21.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="11.0" layoutY="130.0" prefHeight="146.0" prefWidth="426.0" />
-                  <Separator layoutX="1.0" layoutY="403.0" prefHeight="0.0" prefWidth="439.0" />
+                  <TextField fx:id="field_cashAmount" alignment="CENTER" layoutX="11.0" layoutY="130.0" prefHeight="56.0" prefWidth="426.0" />
+                  <Separator layoutX="3.0" layoutY="338.0" prefHeight="42.0" prefWidth="439.0" />
+                  <Button fx:id="button_resetCashAmount" layoutX="253.0" layoutY="227.0" mnemonicParsing="false" onAction="#resetCashAmountClick" prefHeight="110.0" prefWidth="175.0" style="-fx-background-color: #ff6969;" text="Reset">
+                     <font>
+                        <Font name="Monaco" size="15.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
          </items>
       </SplitPane>

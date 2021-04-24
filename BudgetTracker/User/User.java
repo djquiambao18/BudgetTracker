@@ -1,11 +1,12 @@
 package BudgetTracker.User;
 
 import BudgetTracker.Budget.Budget;
-import BudgetTracker.Expenses.Expenses;
+import BudgetTracker.ExpensesPkg.Expenses;
 import BudgetTracker.Income.Income;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -40,7 +41,7 @@ public class User {
         userIncome = income;
     }
 
-    public static ArrayList<Expenses> getUserExpense() {
+    public static List<Expenses> getUserExpense() {
         userExpense = Expenses.getExpensesTable();
         return userExpense;
     }
@@ -53,25 +54,25 @@ public class User {
         return userBudget;
     }
 
-    public void setUserBudget(Budget userBudget) {
-        this.userBudget = userBudget;
+    public void setUserBudget(Budget budget) {
+        userBudget = budget;
     }
 
     public Date getTermLength() {
         return termLength;
     }
 
-    public void setTermLength(Date termLength) {
-        this.termLength = termLength;
+    public void setTermLength(Date term) {
+        termLength = term;
     }
 
-    public static void setUserData(){
-        userData.setUserIncome(this.userIncome);
+    /*public static void setUserData(){
+        setUserIncome(userIncome);
 
     }
     public static User getUserData(){
 
-    }
+    }*/
     @Override
     public String toString() {
         return  "name='" + getName() + '\'' +

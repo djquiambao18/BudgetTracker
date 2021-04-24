@@ -1,11 +1,14 @@
-package BudgetTracker.Expenses;
+package BudgetTracker.ExpensesPkg;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Expenses
 {
 	private String itemName;
     private double itemCost;
+    private String itemCategory;
     private double monthlyExpense;
     private double rentExpense;
     private double utilitiesExpense;
@@ -23,31 +26,11 @@ public class Expenses
         this.subscriptionExpense = subscriptionExpense;
     }
 
-    Expenses(String itemName, double itemCost) 
+    Expenses(String itemName, double itemCost, String itemCategory)
     {
         this.itemName = itemName;
         this.itemCost = itemCost;
-    }
-
-    @Override
-    public String toString() {
-        return "Expenses{" +
-                "itemName='" + itemName + '\'' +
-                ", itemCost=" + itemCost +
-                ", monthlyExpense=" + monthlyExpense +
-                ", rentExpense=" + rentExpense +
-                ", utilitiesExpense=" + utilitiesExpense +
-                ", subscriptionExpense=" + subscriptionExpense +
-                ", withdrawalAmount=" + withdrawalAmount +
-                '}';
-    }
-
-    public static ArrayList<Expenses> getExpensesTable(){
-        return expensesTable;
-    }
-
-    public static void setExpensesTable(ArrayList<Expenses> expenses){
-        expensesTable = expenses;
+        this.itemCategory = itemCategory;
     }
 
     public String getItemName()
@@ -70,7 +53,11 @@ public class Expenses
         this.itemCost = itemCost;
     }
 
-    public double getMonthlyExpense() 
+    public String getItemCategory() { return itemCategory; }
+
+    public void setItemCategory(String itemCategory) { this.itemCategory = itemCategory; }
+
+    public double getMonthlyExpense()
     {
         return this.monthlyExpense;
     }
@@ -95,7 +82,7 @@ public class Expenses
         return this.utilitiesExpense;
     }
 
-    public void setUtilitiesExpense(double utilitiesExpense) 
+    public void setUtilitiesExpense(double utilitiesExpense)
     {
         this.utilitiesExpense = utilitiesExpense;
     }
@@ -118,5 +105,14 @@ public class Expenses
     public void setWithdrawalAmount(double withdrawalAmount) 
     {
         this.withdrawalAmount = withdrawalAmount;
+    }
+
+    public static ArrayList<Expenses> getExpensesTable(){
+        return expensesTable;
+    }
+
+    //public static double GroceriesTotal
+    public static void setExpensesTable(ArrayList<Expenses> expenses){
+        expensesTable = expenses;
     }
 }

@@ -1,8 +1,6 @@
 
 package BudgetTracker;
 
-import BudgetTracker.Expenses.Expenses;
-import BudgetTracker.SaveFile.SaveFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

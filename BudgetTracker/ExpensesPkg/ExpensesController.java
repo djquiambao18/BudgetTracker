@@ -1,4 +1,4 @@
-package BudgetTracker.Expenses;
+package BudgetTracker.ExpensesPkg;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,13 +28,17 @@ public class ExpensesController implements Initializable {
     @FXML
     private TextField field_name;
     @FXML //used for populating the table within the log expenses
-    private final ObservableList<Expenses> expenseList = FXCollections.observableArrayList();
+    private ObservableList<Expenses> expenseList = FXCollections.observableArrayList();
     @FXML
     private final TableColumn col_Cost = new TableColumn("Amount ($)");
     @FXML
     private final TableColumn col_itemName = new TableColumn("Item Name");
     @FXML   //is used in tandem with the expenseList var
     private TableView<Expenses> table_view;
+    @FXML private ComboBox category_comboBox;
+    @FXML private final ObservableList<String> categoryList = FXCollections
+            .observableArrayList("Choose a category for your item", "Groceries",
+                    "Merchandise","Restaurants", "Transportation", "Other");
     private File tempData;
     private ArrayList<Expenses> dataList;
     private static int counter = 0;
@@ -42,16 +46,18 @@ public class ExpensesController implements Initializable {
     public void addItemClick() {
         String str_cost = this.field_cost.getText();
         String str_name = this.field_name.getText();
+        String str_category = category_comboBox.getValue().toString();
 
         try {
             //If the string matches the regex that is recognizable decimal digits.
             if (str_cost.matches("\\${0,1}[0-9]+\\.{0,1}([0-9]{0,2})") && !str_name.isEmpty()) {
-                this.expenseList.add(new Expenses(str_name, Double.parseDouble(str_cost)));
+                this.expenseList.add(new Expenses(str_name, Double.parseDouble(str_cost), str_category));
                 this.field_cost.clear();
                 this.field_name.clear();
                 this.table_view.setItems(this.expenseList);
                 dataList.add(expenseList.get(counter++));
                 Expenses.setExpensesTable(dataList);
+                System.out.println(Expenses.getExpensesTable().get(counter-1));
 
                 }
              else {
@@ -105,7 +111,6 @@ public class ExpensesController implements Initializable {
         window.show();
     }
 
-
     //Initializes the expenses controller
     public void initialize(URL url, ResourceBundle resourceBundle) 
     {
@@ -115,11 +120,20 @@ public class ExpensesController implements Initializable {
         this.col_itemName.setPrefWidth(266.0D);
         this.col_itemName.setResizable(false);
         this.col_itemName.setCellValueFactory(new PropertyValueFactory("itemName"));
-
         this.table_view.getColumns().addAll(col_Cost, col_itemName);
         this.table_view.setEditable(true);
-        this.dataList = new ArrayList<>();
+        category_comboBox.setItems(categoryList);
+        category_comboBox.getSelectionModel().selectFirst();
 
+        //Properly displays the changes even after changing scenes...
+        if(Expenses.getExpensesTable() != null){
+            this.dataList = Expenses.getExpensesTable();
+            expenseList = FXCollections.observableArrayList(this.dataList);
+            this.table_view.setItems(this.expenseList);
+        }
+        else{
+            this.dataList = new ArrayList<>();
+        }
 
     }
     

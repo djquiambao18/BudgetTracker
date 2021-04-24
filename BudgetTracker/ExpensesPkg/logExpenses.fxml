@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BudgetTracker.Expenses.ExpensesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BudgetTracker.ExpensesPkg.ExpensesController">
    <top>
       <HBox alignment="CENTER" prefHeight="55.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,6 +37,11 @@
                         <Insets right="108.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
+                  <ComboBox fx:id="category_comboBox" prefHeight="26.0" prefWidth="228.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
                   <Button id="button_AddItem" fx:id="button_addItem" alignment="CENTER" mnemonicParsing="false" onAction="#addItemClick" prefHeight="57.0" prefWidth="230.0" style="-fx-background-color: #88EAAA;" text="Add Item to List">
                      <font>
                         <Font name="Segoe UI" size="18.0" />

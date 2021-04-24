@@ -1,7 +1,6 @@
 package BudgetTracker;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import BudgetTracker.SaveFile.SaveFile;
@@ -49,7 +48,7 @@ public class HomeController implements Initializable {
     }
     @FXML
     public void changeScreenExpenses(ActionEvent event) throws IOException {
-        Parent setExpenseParent = FXMLLoader.load(getClass().getResource("Expenses/logExpenses.fxml"));
+        Parent setExpenseParent = FXMLLoader.load(getClass().getResource("ExpensesPkg/logExpenses.fxml"));
         Scene setExpenseScene = new Scene(setExpenseParent);
 
         //This line gets the Stage information
@@ -93,6 +92,22 @@ public class HomeController implements Initializable {
 		window.setScene(setBudgetScene);
 		window.show();
 	}
+
+	@FXML
+    /* when this method is called, it will change the scene to
+     * Summary
+     */
+	public void changeScreenToSummary(ActionEvent event) throws IOException
+    {
+        Parent setSummaryParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Summary/summary.fxml")));
+        Scene setSummaryScene = new Scene(setSummaryParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(setSummaryScene);
+        window.show();
+    }
     public void setButton_saveFile(){
 	    SaveFile.save(userData);
     }

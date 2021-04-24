@@ -171,7 +171,7 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-            <Button fx:id="button_summary" layoutX="331.0" layoutY="70.0" mnemonicParsing="false" onAction="#click" prefHeight="70.0" prefWidth="270.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" text="Summary">
+            <Button fx:id="button_summary" layoutX="331.0" layoutY="70.0" mnemonicParsing="false" onAction="#changeScreenToSummary" prefHeight="70.0" prefWidth="270.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" text="Summary">
                <font>
                   <Font size="24.0" />
                </font>
