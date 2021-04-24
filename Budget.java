@@ -4,45 +4,45 @@ public class Budget
 {
     private double remainingBudget;
     private double budgetLimit;
-    private double budgetAmount;
     private double budgetPct;
     private double totalExpenses;
 
-
-    //Budget constructor starts here
-    public Budget(double budgetAmount, double budgetLimit) 
+     
+    public Budget(double budgetLimit) 
     {
-        budgetAmount= this.budgetLimit;
-        budgetLimit = this.budgetLimit;
+       this.budgetLimit = budgetLimit;
     }
-    //Budget ends starts here
 
-
-    // getRemainigBudget method
+    public void setBudget(double amount)
+    {
+        this.budgetLimit = amount;
+    }
+    
+    public double getBudgetLimit()
+    {
+    	return budgetLimit;
+    }
+    
     public double getRemainingBudget()
     {
         remainingBudget =  budgetLimit - totalExpenses;
         return remainingBudget;
     }
 
-    
-    //addMoney method
-    public void addMoney(double money)
-
+    public void increaseBudgetLimit(double amount)
     {
-       budgetLimit = budgetLimit + money;
-    }
-
-    
-    public void setBudget(double amount)
-    {
-        this.budgetLimit = amount;
+       this.budgetLimit = this.budgetLimit + amount;
     }
     
-    
+    public void decreaseBudgetLimit(double amount)
+    {
+    	this.budgetLimit = this.budgetLimit - amount;
+    }
+
     public double getBudgetPct() 
     {
-        return remainingBudget / (budgetLimit);
+        this.budgetPct = remainingBudget / (budgetLimit);
+        return budgetPct;
     }
 
 }

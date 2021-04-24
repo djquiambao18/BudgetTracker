@@ -1,20 +1,24 @@
 package application;
 
-public class Income 
+public class Income
 {
 	private double hourlyWage;
 	private double hoursWorked;
 	private double wageEarnings;
 	private double depositCashAmount;
 	private double totalCashBalance = 0;
-	
+
+	public Income()
+	{
+		
+	}
 	public Income(double hourlyWage, double hoursWorked)
 	{
 		this.hourlyWage = hourlyWage;
 		this.hoursWorked = hoursWorked;
 	}
-	
-	
+
+
 	public Income(double hourlyWage, double hoursWorked, double depositCashAmount)
 	{
 		this.hourlyWage = hourlyWage;
@@ -31,8 +35,8 @@ public class Income
 		}
 		this.hourlyWage = hourlyWage;
 	}
-	
-	
+
+
 	public void setHoursWorked(double hoursWorked)
 	{
 		if(hoursWorked < 0.0)
@@ -41,26 +45,35 @@ public class Income
 		}
 		this.hoursWorked = hoursWorked;
 	}
+
+	
+	//when called, wageEarnings amount is passed without having to calculate
+	public void setWageEarnings(double wageEarnings)
+	{
+		this.wageEarnings = wageEarnings;
+	}
 	
 	
+	//calculates wageEarnings 
 	public void wageEarnings()
 	{
 		wageEarnings = hourlyWage * hoursWorked;
 	}
-	
+
+
 	
 	public double getWageEarnings()
 	{
 		return wageEarnings;
 	}
-	
-	
+
+
 	public void depositWages()
 	{
-		totalCashBalance = totalCashBalance + wageEarnings; 
+		totalCashBalance = totalCashBalance + wageEarnings;
 	}
-	
-	
+
+
 	public void setDepositAmount(double depositCashAmount)
 	{
 		if(depositCashAmount < 0.0)
@@ -69,18 +82,18 @@ public class Income
 		}
 		this.depositCashAmount = depositCashAmount;
 	}
-	
-	
+
+
 	//TODO we still need to find a way to subtract totalExpenses from totalCashBalance
 	public void depositCash()
 	{
 		totalCashBalance = totalCashBalance + depositCashAmount;
 	}
-	
+
 
 	public double getTotalIncomeBalance()
 	{
 		return totalCashBalance;
 	}
-	
+
 }

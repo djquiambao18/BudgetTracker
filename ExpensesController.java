@@ -12,46 +12,34 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class ExpensesController implements Initializable {
-    @FXML
-    private Button button_addItem;
-    @FXML
-    private Button button_subItem;
+
+    //TextFields var will hold data from the logExpenses.fxml
     @FXML
     private TextField field_cost;
     @FXML
     private TextField field_name;
-    @FXML
+    @FXML //used for populating the table within the log expenses
     private final ObservableList<Expenses> expenseList = FXCollections.observableArrayList();
     @FXML
     private final TableColumn col_Cost = new TableColumn("Amount ($)");
     @FXML
     private final TableColumn col_itemName = new TableColumn("Item Name");
-    @FXML
+    @FXML   //is used in tandem with the expenseList var
     private TableView<Expenses> table_view;
-    @FXML 
-    private Button changeScreenToHomebtn;
 
-    public ExpensesController() 
-    {
-    	
-    }
-
-    
-    public void addItemClick() 
+    public void addItemClick()
     {
         String str_cost = this.field_cost.getText();
         String str_name = this.field_name.getText();
 
         try 
         {
+            //If the string matches the regex that is recognizable decimal digits.
             if (str_cost.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})") && !str_name.isEmpty()) 
             {
                 this.expenseList.add(new Expenses(str_name, Double.parseDouble(str_cost)));
@@ -62,7 +50,11 @@ public class ExpensesController implements Initializable {
             
             else 
             {
-                System.out.println("Invalid input!");
+                //If input is invalid, it will show an alert box to the user indicating that the input is not valid!
+                Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
+                invalid_alert.setTitle("Invalid Input!");
+                invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
+                invalid_alert.showAndWait();
             }
         } 
         
@@ -103,7 +95,7 @@ public class ExpensesController implements Initializable {
         this.col_itemName.setPrefWidth(266.0D);
         this.col_itemName.setResizable(false);
         this.col_itemName.setCellValueFactory(new PropertyValueFactory("itemName"));
-        this.table_view.getColumns().addAll(new TableColumn[]{this.col_Cost, this.col_itemName});
+        this.table_view.getColumns().addAll(this.col_Cost, this.col_itemName);
         this.table_view.setEditable(true);
     }
     

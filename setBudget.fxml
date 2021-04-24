@@ -33,13 +33,13 @@
          <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField layoutX="30.0" layoutY="307.0" prefHeight="52.0" prefWidth="393.0" />
+                  <TextField fx:id="field_setBudgetLimit" layoutX="30.0" layoutY="307.0" prefHeight="52.0" prefWidth="393.0" />
                   <Label layoutX="32.0" layoutY="244.0" prefHeight="64.0" prefWidth="263.0" text="Enter Budget Limit for the Month:" wrapText="true">
                      <font>
                         <Font name="Monaco" size="17.0" />
                      </font>
                   </Label>
-                  <Button layoutX="74.0" layoutY="398.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="303.0" style="-fx-background-color: #88EAAA;" text="Set Budget Limit">
+                  <Button fx:id="button_setBudgetLimit" layoutX="74.0" layoutY="398.0" mnemonicParsing="false" onAction="#setBudgetLimitClick" prefHeight="82.0" prefWidth="303.0" style="-fx-background-color: #88EAAA;" text="Set Budget Limit">
                      <font>
                         <Font name="Monaco" size="22.0" />
                      </font>
