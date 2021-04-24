@@ -1,11 +1,9 @@
 package BudgetTracker.ExpensesPkg;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import BudgetTracker.SaveFile.SaveFile;
 import BudgetTracker.User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,16 +98,18 @@ public class ExpensesController implements Initializable {
     //this method is called when the home button is clicked
     public void changeScreenToHome(ActionEvent event) throws IOException
     {
-        User userData = new User();
         //Updates the Expenses Table List using the User class static method set User Expense, and passing in the local dataList variable
-        User.setUserExpense(dataList);
-        Expenses.setTotalGrocery();
-        Expenses.setTotalMerchandise();
-        Expenses.setRentExpense();
-        Expenses.setUtilitiesExpense();
-        Expenses.setTotalRestaurants();
-        Expenses.setTotalTransportation();
-        Expenses.setTotalOthers();
+        if(dataList != null && Expenses.getExpensesTable() != null) {
+            User.setUserExpense(dataList);
+            Expenses.setTotalGrocery();
+            Expenses.setTotalMerchandise();
+            Expenses.setRentExpense();
+            Expenses.setUtilitiesExpense();
+            Expenses.setTotalRestaurants();
+            Expenses.setTotalTransportation();
+            Expenses.setTotalOthers();
+        }
+
         //SaveFile.save(userData);
         Parent setHomeParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../home.fxml")));
         Scene setHomeScene = new Scene (setHomeParent);
