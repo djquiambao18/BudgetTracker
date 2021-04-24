@@ -1,6 +1,8 @@
 package BudgetTracker.Expenses;
 
-public class Expenses 
+import java.util.ArrayList;
+
+public class Expenses
 {
 	private String itemName;
     private double itemCost;
@@ -9,11 +11,10 @@ public class Expenses
     private double utilitiesExpense;
     private double subscriptionExpense;
     private double withdrawalAmount;
+    private static ArrayList<Expenses> expensesTable;
 
     Expenses() 
-    {
-    	
-    }
+    {}
 
     Expenses(double rent, double utilities, double subscriptionExpense)
     {
@@ -28,7 +29,28 @@ public class Expenses
         this.itemCost = itemCost;
     }
 
-    public String getItemName() 
+    @Override
+    public String toString() {
+        return "Expenses{" +
+                "itemName='" + itemName + '\'' +
+                ", itemCost=" + itemCost +
+                ", monthlyExpense=" + monthlyExpense +
+                ", rentExpense=" + rentExpense +
+                ", utilitiesExpense=" + utilitiesExpense +
+                ", subscriptionExpense=" + subscriptionExpense +
+                ", withdrawalAmount=" + withdrawalAmount +
+                '}';
+    }
+
+    public static ArrayList<Expenses> getExpensesTable(){
+        return expensesTable;
+    }
+
+    public static void setExpensesTable(ArrayList<Expenses> expenses){
+        expensesTable = expenses;
+    }
+
+    public String getItemName()
     {
         return this.itemName;
     }

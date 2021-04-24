@@ -14,7 +14,6 @@ public class Income
 		this.hoursWorked = hoursWorked;
 	}
 
-
 	public Income(double hourlyWage, double hoursWorked, double depositCashAmount)
 	{
 		this.hourlyWage = hourlyWage;
@@ -53,7 +52,6 @@ public class Income
 	{
 		return wageEarnings;
 	}
-
 
 	public void depositWages()
 	{

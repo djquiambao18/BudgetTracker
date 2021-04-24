@@ -17,6 +17,11 @@ public class Budget
     }
     //Budget ends starts here
 
+    public Budget(String fromFileRead){
+        fromFileRead.split(",");
+        Double.parseDouble(fromFileRead);
+    }
+
 
     // getRemainigBudget method
     public double getRemainingBudget()

@@ -176,7 +176,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="button_saveFile" layoutX="325.0" layoutY="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="270.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" text="Save File">
+            <Button fx:id="button_saveFile" layoutX="325.0" layoutY="70.0" mnemonicParsing="false" onAction="#setButton_saveFile" prefHeight="70.0" prefWidth="270.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" text="Save File">
                <font>
                   <Font size="26.0" />
                </font>

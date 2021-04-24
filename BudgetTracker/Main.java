@@ -1,6 +1,8 @@
 
 package BudgetTracker;
 
+import BudgetTracker.Expenses.Expenses;
+import BudgetTracker.SaveFile.SaveFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +23,10 @@ public class Main extends Application {
 			primaryStage.setScene(new Scene(root, 900, 600));
 			primaryStage.setResizable(false);
 			primaryStage.show();
+			//SaveFile.save(primaryStage);
+
 		}
-		catch(Exception e) {
+		catch(Exception e){
 			e.printStackTrace();
 		}
 	}
