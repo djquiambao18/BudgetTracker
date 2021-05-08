@@ -81,6 +81,8 @@ public class Income
 	}
 
 
+
+
 	//TODO we still need to find a way to subtract totalExpenses from totalCashBalance
 	public void depositCash()
 	{
@@ -91,6 +93,9 @@ public class Income
 	public double getTotalIncomeBalance()
 	{
 		return totalCashBalance;
+	}
+	public void setTotalIncomeBalance(double totalIncomeBalance){
+		totalCashBalance = totalIncomeBalance;
 	}
 
 }

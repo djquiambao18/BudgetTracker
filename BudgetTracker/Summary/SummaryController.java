@@ -51,7 +51,7 @@ public class SummaryController implements Initializable {
             );
         }
         pieChart.setData(pieChart_data);
-
+        pieChart.setLabelsVisible(true);
     }
 
     // when this method is called, it will change the scene to home page

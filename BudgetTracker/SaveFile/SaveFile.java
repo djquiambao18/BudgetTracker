@@ -1,88 +1,102 @@
 package BudgetTracker.SaveFile;
 
-import BudgetTracker.Budget.Budget;
-import BudgetTracker.User.User;
+import BudgetTracker.ExpensesPkg.Expenses;
+import BudgetTracker.Income.Income;
 import javafx.scene.control.Alert;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import javax.sound.midi.SysexMessage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SaveFile {
-    private static File saveFile;   //assigned within the save methods.
-    private static FileChooser fileChooser = new FileChooser();
-    private static FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text File", "*.txt");
-    private static User savedUserInfo;
+    private static File expenses_SaveFile = new File("userExpenses.csv");   //assigned within the save methods.
+    private static File income_SaveFile = new File("incomeData.csv");
+    /*
+    * Expenses save data method
+    * */
+    public static boolean saveExpenses(List<Expenses> expenses) throws IOException {
 
-    public static boolean save(User userData){
-        try {
-        if(saveFile.exists()) {
-                PrintWriter writer = new PrintWriter(saveFile);
-                //first field: User's name
-                //second field: User's budget
-                //third field: user's income
-                savedUserInfo = userData;
-                writer.println(userData.getName()+"|"+userData.getUserBudget()+"|"+userData.getUserIncome()+"|"+userData.getUserExpense()+"|"+userData.getTermLength());
-                //close file
-                writer.close();
-        }
-        else{
-            PrintWriter writer = new PrintWriter(saveFile);
-            writer.println(userData.getName()+"|"+userData.getUserBudget()+"|"+userData.getUserIncome()+"|"+userData.getUserExpense()+"|"+userData.getTermLength());
-            //close file
+        if(expenses_SaveFile.exists()){
+            File fileOut = new File("userExpenses.csv");
+            PrintWriter writer = new PrintWriter(fileOut);
+            for (Expenses exp: expenses) {
+                writer.print(exp.getItemName() +"," + exp.getItemCost() + "," +exp.getItemCategory() +"\n");
+            }
             writer.close();
-        }
             return true;
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        else{
+            File fileOut = new File("userExpenses.csv");
+            return fileOut.createNewFile();
         }
-
-        return false;
     }
-    //For initial boot
-    //Will return TRUE if EXISTING FILE is detected.
-    //False if File does not exist. Then, we save the data.
-    public static boolean save(){
-        /*fileChooser.getExtensionFilters().add(extensionFilter);
-        saveFile = fileChooser.showSaveDialog(stage);*/
-        saveFile = new File("userData.csv");
+
+    /*
+    * Expenses load data method
+    * */
+    public static ArrayList<Expenses> loadExpenses() throws IOException {
+        ArrayList<Expenses> tempArrayList = new ArrayList<>();
         try {
-            if (saveFile.createNewFile()) {
+            if(expenses_SaveFile.exists()) {
+                Scanner reader = new Scanner(expenses_SaveFile);
+                reader.useDelimiter("[,\\n]+");
+                while (reader.hasNext()) {
+                    Expenses expenses = new Expenses(reader.next(), Double.parseDouble(reader.next()), reader.next());
+                    tempArrayList.add(expenses);
+                }
+            }
+            else
+            {
                 Alert save_existsAlert = new Alert(Alert.AlertType.INFORMATION);
-                save_existsAlert.setContentText("Saving Data...");
+                save_existsAlert.setContentText("No data Found...");
                 save_existsAlert.showAndWait();    //waits for user input to press OK to continue
-                return false;
             }
         }
-        catch(IOException e)
+        catch (IOException | NumberFormatException e)
+        {
+            Alert save_existsAlert = new Alert(Alert.AlertType.INFORMATION);
+            save_existsAlert.setContentText("No readable data Found...");
+            save_existsAlert.showAndWait();    //waits for user input to press OK to continue
+            e.getStackTrace();
+        }
+        return tempArrayList;
+    }
+
+    public static boolean income_save(Income income){
+        try {
+                PrintWriter writer = new PrintWriter(income_SaveFile.getAbsolutePath());
+                writer.println(income.getTotalIncomeBalance() + "," + income.getWageEarnings() +"\n");
+                writer.close();
+                return true;
+
+        }catch (IOException | NumberFormatException | NullPointerException e)
         {
             e.getStackTrace();
         }
-        return true;
+        return false;
     }
-    public static boolean loadFile(){
-        try {
-            if (saveFile.exists()) {
-                Scanner readFile = new Scanner(saveFile);
-                readFile.useDelimiter("|");
-                while(readFile.hasNextLine()){
-                    savedUserInfo.setName(readFile.next());
-                    //new Budget(readFile.next());
-                    //savedUserInfo.setUserBudget(readFile.next());
 
-                }
+    public static Income income_load(){
+        Income income = new Income();
+        try{
+
+            Scanner reader = new Scanner(income_SaveFile);
+            reader.useDelimiter("[,\\n]+");
+            while(reader.hasNext()){
+                //set income vars
+                income.setTotalIncomeBalance(Double.parseDouble(reader.next()));
+                income.setWageEarnings(Double.parseDouble(reader.next()));
             }
         }
-        catch(FileNotFoundException e)
+        catch(IOException | NumberFormatException e)
         {
-            e.printStackTrace();
+            e.getStackTrace();
         }
-        return saveFile.exists();
+        return income;
+    }
+
+    //Checks if file already exists.
+    public static boolean fileExists(){
+        return expenses_SaveFile.exists() && income_SaveFile.exists();
     }
 }

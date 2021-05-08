@@ -15,13 +15,12 @@ public class Budget
         budgetAmount= this.budgetLimit;
         budgetLimit = this.budgetLimit;
     }
-    //Budget ends starts here
 
+    //Budget ends starts here
     public Budget(String fromFileRead){
         fromFileRead.split(",");
         Double.parseDouble(fromFileRead);
     }
-
 
     // getRemainigBudget method
     public double getRemainingBudget()
@@ -30,7 +29,6 @@ public class Budget
         return remainingBudget;
     }
 
-    
     //addMoney method
     public void addMoney(double money)
 

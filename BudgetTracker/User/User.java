@@ -4,8 +4,9 @@ import BudgetTracker.Budget.Budget;
 import BudgetTracker.ExpensesPkg.Expenses;
 import BudgetTracker.Income.Income;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -14,11 +15,10 @@ public class User {
     private static Income userIncome; //holds user's income
     private static ArrayList<Expenses> userExpense; //user's expenses
     private static Budget userBudget; //user's Budget
-    private static Date termLength; //for how long the user intends to use the budget tracker with
+    private static Period termLength; //for how long the user intends to use the budget tracker with
                             //the set variables for income, expenses, budget, etc.
-    private static User userData;
-    public User(Date term, String userName){termLength = term; name = userName;}
-    public User(Date term, String userName, Income income, ArrayList<Expenses> expenses, Budget budget)
+    public User(Period term, String userName){termLength = term; name = userName;}
+    public User(Period term, String userName, Income income, ArrayList<Expenses> expenses, Budget budget)
     {
         termLength = term;
         name = userName;
@@ -58,21 +58,14 @@ public class User {
         userBudget = budget;
     }
 
-    public Date getTermLength() {
+    public static Period getTermLength() {
         return termLength;
     }
 
-    public void setTermLength(Date term) {
+    public static void setTermLength(Period term) {
         termLength = term;
     }
 
-    /*public static void setUserData(){
-        setUserIncome(userIncome);
-
-    }
-    public static User getUserData(){
-
-    }*/
     @Override
     public String toString() {
         return  "name='" + getName() + '\'' +

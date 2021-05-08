@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import BudgetTracker.SaveFile.SaveFile;
 import BudgetTracker.User.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +42,7 @@ public class ExpensesController implements Initializable {
                     "Merchandise","Restaurants", "Transportation", "Other");
     //private File tempData;
     private ArrayList<Expenses> dataList;
+    //counter for expense list to increment each addition to the list
     private static int counter = 0;
 
     public void addItemClick() {
@@ -50,7 +52,10 @@ public class ExpensesController implements Initializable {
 
         try {
             //If the string matches the regex that is recognizable decimal digits.
-            if (str_cost.matches("\\${0,1}[0-9]+\\.{0,1}([0-9]{0,2})") && !str_name.isEmpty()) {
+            if (str_cost.matches("\\${0,1}[0-9]+\\.{0,1}([0-9]{0,2})")
+                    && !str_name.isEmpty()
+                    && !str_category.equals("Choose a category for your item")){
+
                 this.expenseList.add(new Expenses(str_name, Double.parseDouble(str_cost), str_category));
                 this.field_cost.clear();
                 this.field_name.clear();
@@ -59,12 +64,22 @@ public class ExpensesController implements Initializable {
                 Expenses.setExpensesTable(dataList);
                 //System.out.println(Expenses.getExpensesTable().get(counter-1));
 
-                }
-             else {
+            }
+
+            else {
                 //If input is invalid, it will show an alert box to the user indicating that the input is not valid!
+
                 Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
                 invalid_alert.setTitle("Invalid Input!");
-                invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
+
+                if (!str_cost.matches("\\${0,1}[0-9]+\\.{0,1}([0-9]{0,2})")){
+                    invalid_alert.setContentText("Unrecognized input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
+                }
+                else if (str_category.equals("Choose a category for your item")) {
+                    invalid_alert.setContentText("Please select a VALID category for your item.");
+                }
+                else
+                    invalid_alert.setContentText("Error. Please try again...");
                 invalid_alert.showAndWait();    //waits for user input to press OK to continue
             }
         }
@@ -108,7 +123,9 @@ public class ExpensesController implements Initializable {
             Expenses.setTotalRestaurants();
             Expenses.setTotalTransportation();
             Expenses.setTotalOthers();
+            SaveFile.saveExpenses(Expenses.getExpensesTable());
         }
+
 
         //SaveFile.save(userData);
         Parent setHomeParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../home.fxml")));

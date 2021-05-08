@@ -3,6 +3,7 @@ package BudgetTracker;
 import java.io.File;
 import java.io.IOException;
 
+import BudgetTracker.ExpensesPkg.Expenses;
 import BudgetTracker.SaveFile.SaveFile;
 import BudgetTracker.User.User;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -64,10 +66,11 @@ public class HomeController implements Initializable {
 
     public void changeScreenToInputIncome(ActionEvent event) throws IOException
     {
+
         Parent inputIncomeParent = FXMLLoader.load(getClass().getResource("Income/inputIncome.fxml"));
         Scene inputIncomeScene = new Scene (inputIncomeParent);
 
-
+        SaveFile.income_load();
         //This line gets the Stage information
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
@@ -108,8 +111,13 @@ public class HomeController implements Initializable {
         window.setScene(setSummaryScene);
         window.show();
     }
-    public void setButton_saveFile(){
-	    SaveFile.save(userData);
+
+    public void setButton_saveFile() throws IOException {
+	    SaveFile.saveExpenses(User.getUserExpense());
+	    SaveFile.income_save(User.getUserIncome());
+        Alert save_existsAlert = new Alert(Alert.AlertType.INFORMATION);
+        save_existsAlert.setContentText("Saved data..");
+        save_existsAlert.showAndWait();    //waits for user input to press OK to continue
     }
 
     public static void setUserData(Object o){
@@ -133,10 +141,14 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         progressBar.setStyle("-fx-accent: #88eaaa;");
-
         label_balanceFraction.setText(num + "/1500");  // test value, can delete
-        if(SaveFile.save()){
-
+        if(SaveFile.fileExists())
+        {
+            try {
+                Expenses.setExpensesTable(SaveFile.loadExpenses());
+            } catch (IOException | NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
 
         //FOLLOWING CODE will be used for future implementations

@@ -2,6 +2,7 @@ package BudgetTracker.Budget;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 
 import BudgetTracker.User.User;
 import javafx.event.ActionEvent;
@@ -20,7 +21,11 @@ public class SetBudgetController
 	@FXML 
 	private Button changeScreenToHomebtn;
 	@FXML
-	public DatePicker startDate;
+	private static DatePicker startDate;
+	@FXML
+	private static DatePicker endDate;
+	@FXML
+	private static LocalDate term;
 
 	/* when this method is called, it will change the scene to
 	 * home
@@ -40,11 +45,16 @@ public class SetBudgetController
 
 	@FXML
 	public void datepicker_Start(){
-		LocalDate startValue = startDate.getValue();
+		//Period termLength = Period.between(startDate.getValue(), endDate.getValue());
+		//User.setTermLength(termLength);
+		System.out.println(User.getTermLength().toString());
 
-		System.out.println(startValue.getDayOfMonth() + " " + startValue.getMonth() + " " + startValue.getYear());
 		//User.setUserData();
 		//User.userData.setTermLength();
+	}
+	@FXML
+	public void datepicker_End(){
+
 	}
 
 

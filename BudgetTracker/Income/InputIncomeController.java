@@ -1,10 +1,15 @@
 package BudgetTracker.Income;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import BudgetTracker.SaveFile.SaveFile;
+import BudgetTracker.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class InputIncomeController 
+public class InputIncomeController implements Initializable
 {
 	@FXML
 	private TextField field_hourlyWage;
@@ -49,6 +54,9 @@ public class InputIncomeController
 	 */
 	public void changeScreenToHome(ActionEvent event) throws IOException
 	{
+		SaveFile.income_save(income);
+		User.setUserIncome(income);
+
 		Parent setHomeParent = FXMLLoader.load(getClass().getResource("../home.fxml"));
 		Scene setHomeScene = new Scene (setHomeParent);
 		
@@ -175,6 +183,7 @@ public class InputIncomeController
 		this.field_hourlyWage.clear();
 		this.field_hoursWorked.clear();
 		this.label_wagesEarned.setText("Wages Earned = ");
+
 	}
 
 	/*
@@ -198,12 +207,13 @@ public class InputIncomeController
 		{
 			Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
 			invalid_alert.setTitle("Invalid Input!");
-			invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
+			invalid_alert.setContentText("Please type a valid number");
 			invalid_alert.showAndWait();
 		}
 
 	}
-	
-	
-	
+	@Override
+	public void initialize(URL location, ResourceBundle resources){
+		income = SaveFile.income_load();
+	}
 }

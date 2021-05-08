@@ -23,17 +23,17 @@ public class Expenses
     private static double totalTransportation;
     private static double totalOthers;
 
-    Expenses() 
+    public Expenses()
     {}
 
-    Expenses(double rent, double utilities, double subscriptionExpense)
+    public Expenses(double rent, double utilities, double subscriptionExpense)
     {
         rentExpense = rent;
         utilitiesExpense = utilities;
         this.subscriptionExpense = subscriptionExpense;
     }
 
-    Expenses(String itemName, double itemCost, String itemCategory)
+    public Expenses(String itemName, double itemCost, String itemCategory)
     {
         this.itemName = itemName;
         this.itemCost = itemCost;
@@ -185,7 +185,7 @@ public class Expenses
     public static void setTotalTransportation(){
         double transport = 0.0;
         for (Expenses exp : expensesTable) {
-            if(exp.getItemCategory().equals("Restaurants"))
+            if(exp.getItemCategory().equals("Transportation"))
             {
                 transport += exp.getItemCost();
             }
@@ -200,7 +200,7 @@ public class Expenses
     public static void setTotalOthers(){
         double others = 0.0;
         for (Expenses exp : expensesTable) {
-            if(exp.getItemCategory().equals("Restaurants"))
+            if(exp.getItemCategory().equals("Others"))
             {
                 others += exp.getItemCost();
             }

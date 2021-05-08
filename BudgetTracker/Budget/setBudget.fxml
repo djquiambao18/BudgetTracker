@@ -42,7 +42,7 @@
                         <Font name="Monaco" size="17.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="startDate" layoutX="22.0" layoutY="45.0" onAction="#datepicker_Start" prefHeight="52.0" prefWidth="393.0" />
+                  <DatePicker fx:id="startDate" layoutX="22.0" layoutY="45.0" prefHeight="52.0" prefWidth="393.0" />
                   <Label layoutX="23.0" layoutY="107.0" prefHeight="37.0" prefWidth="279.0" text="End Date (Default 1 Month):">
                      <font>
                         <Font name="Monaco" size="17.0" />
