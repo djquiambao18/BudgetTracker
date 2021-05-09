@@ -10,7 +10,7 @@ public class Income
 
 	public Income()
 	{
-		
+
 	}
 	public Income(double hourlyWage, double hoursWorked)
 	{
@@ -18,15 +18,14 @@ public class Income
 		this.hoursWorked = hoursWorked;
 	}
 
-
 	public Income(double hourlyWage, double hoursWorked, double depositCashAmount)
 	{
 		this.hourlyWage = hourlyWage;
 		this.hoursWorked = hoursWorked;
 		this.depositCashAmount = depositCashAmount;
 	}
-	
-	
+
+
 	public void setHourlyWage(double hourlyWage)
 	{
 		if(hourlyWage < 0.0)
@@ -46,27 +45,25 @@ public class Income
 		this.hoursWorked = hoursWorked;
 	}
 
-	
+
 	//when called, wageEarnings amount is passed without having to calculate
 	public void setWageEarnings(double wageEarnings)
 	{
 		this.wageEarnings = wageEarnings;
 	}
-	
-	
-	//calculates wageEarnings 
+
+
+	//calculates wageEarnings
 	public void wageEarnings()
 	{
 		wageEarnings = hourlyWage * hoursWorked;
 	}
 
 
-	
 	public double getWageEarnings()
 	{
 		return wageEarnings;
 	}
-
 
 	public void depositWages()
 	{

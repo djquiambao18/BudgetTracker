@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<!--
+=======
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
+   <top>
+      <HBox prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="51.0" prefWidth="908.0" style="-fx-background-color: #88EAAA;" text="Budget Tracker">
+               <font>
+                  <Font name="Monaco" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <SplitPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #B9B9B9;">
+               <children>
+                  <Button fx:id="changeScreenLogExpensesbtn" layoutX="309.0" layoutY="181.0" mnemonicParsing="false" onAction="#changeScreenToLogExpenses" prefHeight="75.0" prefWidth="250.0" text="Log Expenses">
+                     <effect>
+                        <ColorAdjust contrast="1.0" />
+                     </effect>
+                     <font>
+                        <Font name="Monaco" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="changeScreenInputIncomebtn" layoutX="309.0" layoutY="270.0" mnemonicParsing="false" onAction="#changeScreenToInputIncome" prefHeight="75.0" prefWidth="250.0" text="Input Income">
+                     <effect>
+                        <ColorAdjust contrast="1.0" />
+                     </effect>
+                     <font>
+                        <Font name="Monaco" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="changeScreenSetBudgetbtn" layoutX="309.0" layoutY="90.0" mnemonicParsing="false" onAction="#changeScreenToSetBudget" prefHeight="75.0" prefWidth="250.0" text="Set Budget">
+                     <effect>
+                        <ColorAdjust contrast="1.0" />
+                     </effect>
+                     <font>
+                        <Font name="Monaco" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="309.0" layoutY="453.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="250.0" text="Save File">
+                     <effect>
+                        <ColorAdjust contrast="1.0" />
+                     </effect>
+                     <font>
+                        <Font name="Monaco" size="20.0" />
+                     </font>
+                  </Button>
+                  <ProgressBar layoutX="13.0" layoutY="27.0" prefHeight="37.0" prefWidth="869.0" progress="0.0" />
+                  <Label layoutX="13.0" layoutY="6.0" style="-fx-background-color: white;" text="Available Balance:">
+                     <font>
+                        <Font name="Monaco" size="13.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.28" />
+                     </effect>
+                  </Label>
+                  <Button layoutX="309.0" layoutY="362.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="250.0" text="Summary">
+                     <effect>
+                        <ColorAdjust contrast="1.0" />
+                     </effect>
+                     <font>
+                        <Font name="Monaco" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <effect>
+                  <ColorAdjust brightness="0.34" contrast="0.2" />
+               </effect>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>
+>>>>>>> origin/main
+-->
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

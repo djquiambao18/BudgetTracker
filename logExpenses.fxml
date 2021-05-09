@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ExpensesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ExpensesController">
    <top>
       <HBox alignment="CENTER" prefHeight="55.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,9 +25,9 @@
    <center>
       <HBox prefHeight="502.0" prefWidth="870.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="502.0" prefWidth="459.0">
+            <VBox alignment="CENTER" prefHeight="545.0" prefWidth="425.0">
                <children>
-                  <HBox alignment="CENTER" fillHeight="false" minWidth="-Infinity" prefHeight="25.0" prefWidth="437.0">
+                  <HBox alignment="CENTER" fillHeight="false" minWidth="-Infinity" prefHeight="25.0" prefWidth="430.0">
                      <children>
                         <TextField fx:id="field_name" prefHeight="25.0" prefWidth="230.0" promptText="Item Name" />
                      </children>
@@ -37,6 +37,11 @@
                         <Insets right="108.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
+                  <ComboBox fx:id="category_comboBox" prefHeight="26.0" prefWidth="228.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
                   <Button id="button_AddItem" fx:id="button_addItem" alignment="CENTER" mnemonicParsing="false" onAction="#addItemClick" prefHeight="57.0" prefWidth="230.0" style="-fx-background-color: #88EAAA;" text="Add Item to List">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
@@ -52,9 +57,9 @@
                   </Button>
                </children>
             </VBox>
-            <ScrollPane prefHeight="562.0" prefWidth="441.0">
+            <ScrollPane prefHeight="545.0" prefWidth="469.0">
                <content>
-                  <TableView fx:id="table_view" prefHeight="547.0" prefWidth="439.0">
+                  <TableView fx:id="table_view" prefHeight="547.0" prefWidth="473.0">
                     <!--<columns>
                       <TableColumn fx:id="col_Cost" editable="true" prefWidth="172.0" resizable="false" text="Amount ($)" />
                       <TableColumn fx:id="col_itemName" editable="true" prefWidth="266.0" resizable="false" text="Item Name" />

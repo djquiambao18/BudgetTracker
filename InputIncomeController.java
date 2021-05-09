@@ -22,7 +22,7 @@ public class InputIncomeController
 	private TextField field_hoursWorked;
 	@FXML
 	private Label label_wagesEarned;
-	@FXML 
+	@FXML
 	private Button button_calculateWages;
 	@FXML
 	private Button button_resetWages;
@@ -36,15 +36,16 @@ public class InputIncomeController
 	private Button button_resetCashAmount;
 	@FXML
 	private Button button_DisplayTotalCashBalanceOnHand;
-	
 
 	//the following variables are placeholder for getting the textfield values:
 	public static String str_hourlyWage;
 	public static String str_hoursWorked;
+
+	public static Income income = new Income();
+
 	
-	Income income = new Income();
-    
 	
+	@FXML
 	/* when this method is called, it will change the scene to
 	 * home
 	 */
@@ -60,24 +61,18 @@ public class InputIncomeController
 		window.setScene(setHomeScene);
 		window.show();
 	}
+
 	
 	
-	
-	/*
-	 * when the user finishes typing its hourlyWage and hoursWorked 
-	 * and clicks on the Calculate Wages button, 
-	 * this method will retrieve the calculated earned wages 
-	 * and display the result on the screen.
-	 */
 	public void calculateWagesEarnedClick()
-	{	
+	{
 		double incomeWages = getCalculatedWagesEarned();
-		
+
 		if (incomeWages > 0)
 		{
-			label_wagesEarned.setText("Wages Earned = " + incomeWages);   
+			label_wagesEarned.setText("Wages Earned = " + "$" + incomeWages);
 		}
-		else 
+		else
 		{
 			//If input is invalid, it will show an alert box to the user indicating that the input is not valid!
 			Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
@@ -85,56 +80,54 @@ public class InputIncomeController
 			invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
 			invalid_alert.showAndWait();
 		}
-		
 	}
-	
-	
+
 	
 	
 	/*
-	 * when this method is called, it will deposit the calculated earned wages
-	 * into the cash balance on hand
+	 * when this method is called, it will calculate and return the wage earnings
 	 */
-	public void depositWagesClick()
+	public double getCalculatedWagesEarned()
 	{
-		double incomeWages = getCalculatedWagesEarned();
-		
-		if (incomeWages > 0)
+		str_hourlyWage 	= this.field_hourlyWage.getText();
+		str_hoursWorked	= this.field_hoursWorked.getText();
+
+		try
 		{
-			income.setWageEarnings(incomeWages);
-			income.depositWages();
-			Alert alert_sucess = new Alert(Alert.AlertType.INFORMATION);
-			alert_sucess.setTitle("Success!");
-			alert_sucess.setContentText("You have deposited your earned wages successfully.");
-			alert_sucess.showAndWait();	 
+			if (str_hourlyWage.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})")
+					&& str_hoursWorked.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})"))
+			{
+				income.setHourlyWage(Double.parseDouble(str_hourlyWage));
+				income.setHoursWorked(Double.parseDouble(str_hoursWorked));
+				income.wageEarnings();
+				return income.getWageEarnings();
+			}
 		}
-		else
+
+		catch (Exception e)
 		{
-            Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
-            invalid_alert.setTitle("Invalid Input!");
-            invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
-            invalid_alert.showAndWait();
+			e.getStackTrace();
 		}
-		
+
+		return -1;
 	}
-	
-	
-	
-	
+
+
+
 	/*
-	 * when this method is called, it resets the values of hourlyWage and hoursWorked.
-	 * also clears away the calculation of Wages Earned.
+	 * when this method is called, it will display the total cash money on hand
 	 */
-	public void resetWagesCalculationClick()
+	public void displayTotalCashBalanceOnHandClick()
 	{
-		this.field_hourlyWage.clear();
-        this.field_hoursWorked.clear();
-        this.label_wagesEarned.setText("Wages Earned = ");
+		Alert alert_display = new Alert(Alert.AlertType.INFORMATION);
+		alert_display.setTitle("Total Cash Balance On Hand");
+		alert_display.setContentText("Cash balance on hand: " + "$" + income.getTotalIncomeBalance());
+		alert_display.showAndWait();
+
 	}
-	
-	
-	
-	
+
+
+
 	/*
 	 * when this method is called, it will deposit the user's entered cash amount
 	 * into the cash balance on hand
@@ -145,32 +138,31 @@ public class InputIncomeController
 
 		try
 		{
-            if (str_cashAmount.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})"))
-            {
-            	income.setDepositAmount(Double.parseDouble(str_cashAmount));
-            	income.depositCash();
-            	Alert alert_sucess = new Alert(Alert.AlertType.INFORMATION);
-    			alert_sucess.setTitle("Success!");
-    			alert_sucess.setContentText("You have deposited your cash amount successfully.");
-    			alert_sucess.showAndWait();	 
-    		}
-    		else
-    		{
-                Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
-                invalid_alert.setTitle("Invalid Input!");
-                invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
-                invalid_alert.showAndWait();
-    		}               
+			if (str_cashAmount.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})"))
+			{
+				income.setDepositAmount(Double.parseDouble(str_cashAmount));
+				income.depositCash();
+				Alert alert_success = new Alert(Alert.AlertType.INFORMATION);
+				alert_success.setTitle("Success!");
+				alert_success.setContentText("You have deposited your cash amount successfully.");
+				alert_success.showAndWait();
+			}
+			else
+			{
+				Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
+				invalid_alert.setTitle("Invalid Input!");
+				invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
+				invalid_alert.showAndWait();
+			}
 		}
-		 
+
 		catch (Exception e)
-	    {
+		{
 			e.getStackTrace();
-	    }
-		
+		}
+
 	}
-	
-	
+
 	
 	
 	/*
@@ -181,52 +173,49 @@ public class InputIncomeController
 	{
 		this.field_cashAmount.clear();
 	}
-	
-	
-	
-	
-	/*
-	 * when this method is called, it will display the total cash money on hand
-	 */
-	public void displayTotalCashBalanceOnHandClick()
-	{
-		Alert alert_sucess = new Alert(Alert.AlertType.INFORMATION);
-        alert_sucess.setTitle("Total Cash Balance On Hand");
-        alert_sucess.setContentText("Cash balance on hand: " + income.getTotalIncomeBalance());
-        alert_sucess.showAndWait();
-	       
-	}
-	
-	
-	
-	
-	/*
-	 * when this method is called, it will calculate and return the wage earnings
-	 */
-	public double getCalculatedWagesEarned()
-	{
-		str_hourlyWage 	= this.field_hourlyWage.getText();
-	    str_hoursWorked	= this.field_hoursWorked.getText();
-		
-		 try
-		 {
-	            if (str_hourlyWage.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})")
-	            		&& str_hoursWorked.matches("\\$?[0-9]+\\.{0,1}([0-9]{0,2})"))
-	            {
-	            	income.setHourlyWage(Double.parseDouble(str_hourlyWage));
-	            	income.setHoursWorked(Double.parseDouble(str_hoursWorked));
-	            	income.wageEarnings();
-	            	return income.getWageEarnings();
-	            }                
-		 }
-		 
-		catch (Exception e)
-	    {
-			e.getStackTrace();
-	    }
-		 
-	    return 0;
-	}
-			
-}
 
+	
+	
+	/*
+	 * when this method is called, it resets the values of hourlyWage and hoursWorked.
+	 * also clears away the calculation of Wages Earned.
+	 */
+	public void resetWagesCalculationClick()
+	{
+		this.field_hourlyWage.clear();
+		this.field_hoursWorked.clear();
+		this.label_wagesEarned.setText("Wages Earned = ");
+	}
+
+	
+	
+	/*
+	 * when this method is called, it will deposit the calculated earned wages
+	 * into the cash balance on hand
+	 */
+	public void depositWagesClick()
+	{
+		double incomeWages = getCalculatedWagesEarned();
+
+		if (incomeWages > 0)
+		{
+			income.setWageEarnings(incomeWages);
+			income.depositWages();
+			Alert alert_success = new Alert(Alert.AlertType.INFORMATION);
+			alert_success.setTitle("Success!");
+			alert_success.setContentText("You have deposited your earned wages successfully.");
+			alert_success.showAndWait();
+		}
+		else
+		{
+			Alert invalid_alert = new Alert(Alert.AlertType.ERROR);
+			invalid_alert.setTitle("Invalid Input!");
+			invalid_alert.setContentText("Unrecognized cost input. Please type any NUMBER in a valid format (Ex: 20.55; 99.9; 5)");
+			invalid_alert.showAndWait();
+		}
+
+	}
+	
+	
+	
+}

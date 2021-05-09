@@ -7,21 +7,22 @@ public class Budget
     private double budgetPct;
     private double totalExpenses;
 
-     
-    public Budget(double budgetLimit) 
+    public Budget()
     {
-       this.budgetLimit = budgetLimit;
-    }
-
-    public void setBudget(double amount)
-    {
-        this.budgetLimit = amount;
+    	
     }
     
-    public double getBudgetLimit()
+    public Budget(double budgetLimit) 
     {
-    	return budgetLimit;
+    	this.budgetLimit = budgetLimit;
     }
+   
+
+    public Budget(String fromFileRead){
+        fromFileRead.split(",");
+        Double.parseDouble(fromFileRead);
+    }
+
     
     public double getRemainingBudget()
     {
@@ -29,19 +30,36 @@ public class Budget
         return remainingBudget;
     }
 
+    
     public void increaseBudgetLimit(double amount)
+
     {
-       this.budgetLimit = this.budgetLimit + amount;
+       budgetLimit = budgetLimit + amount;
     }
     
+    
     public void decreaseBudgetLimit(double amount)
+
     {
-    	this.budgetLimit = this.budgetLimit - amount;
+       budgetLimit = budgetLimit - amount;
     }
 
+    
+    public void setBudget(double amount)
+    {
+        this.budgetLimit = amount;
+    }
+    
+    
+    public double getBudgetLimit()
+    {
+    	return budgetLimit;
+    }
+    
+    
     public double getBudgetPct() 
     {
-        this.budgetPct = remainingBudget / (budgetLimit);
+        this.budgetPct = remainingBudget / budgetLimit;
         return budgetPct;
     }
 
