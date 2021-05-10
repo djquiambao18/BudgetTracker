@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
@@ -33,30 +32,18 @@
          <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="field_setBudgetLimit" layoutX="30.0" layoutY="307.0" prefHeight="52.0" prefWidth="393.0" promptText="0.0" />
-                  <Label layoutX="32.0" layoutY="244.0" prefHeight="64.0" prefWidth="263.0" text="Enter Budget Limit for the Month:" wrapText="true">
+                  <TextField fx:id="field_setBudgetLimit" layoutX="27.0" layoutY="173.0" prefHeight="52.0" prefWidth="393.0" promptText="0.0" />
+                  <Label layoutX="26.0" layoutY="74.0" prefHeight="76.0" prefWidth="303.0" text="Enter Budget Limit for the Month:" wrapText="true">
                      <font>
-                        <Font name="Monaco" size="17.0" />
+                        <Font name="Monaco" size="25.0" />
                      </font>
                   </Label>
-                  <Button fx:id="button_setBudgetLimit" layoutX="70.0" layoutY="377.0" mnemonicParsing="false" onAction="#setBudgetLimitClick" prefHeight="82.0" prefWidth="303.0" style="-fx-background-color: #88EAAA;" text="Set Budget Limit">
+                  <Button fx:id="button_setBudgetLimit" layoutX="72.0" layoutY="272.0" mnemonicParsing="false" onAction="#setBudgetLimitClick" prefHeight="82.0" prefWidth="303.0" style="-fx-background-color: #88EAAA;" text="Set Budget Limit">
                      <font>
                         <Font name="Monaco" size="22.0" />
                      </font>
                   </Button>
-                  <Label layoutX="23.0" layoutY="6.0" prefHeight="37.0" prefWidth="198.0" text="Select Start Date:">
-                     <font>
-                        <Font name="Monaco" size="17.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="startDate" layoutX="22.0" layoutY="45.0" onAction="#datepicker_Start" prefHeight="52.0" prefWidth="393.0" />
-                  <Label layoutX="23.0" layoutY="107.0" prefHeight="37.0" prefWidth="279.0" text="End Date (Default 1 Month):">
-                     <font>
-                        <Font name="Monaco" size="17.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="endDate" layoutX="22.0" layoutY="157.0" prefHeight="58.0" prefWidth="394.0" />
-                  <Button fx:id="button_clearSetBudgetFeilds" layoutX="106.0" layoutY="474.0" mnemonicParsing="false" onAction="#clearSetBudgetLimitClick" prefHeight="47.0" prefWidth="230.0" style="-fx-background-color: #ff6969;" text="Clear All Fields">
+                  <Button fx:id="button_clearSetBudgetFeilds" layoutX="109.0" layoutY="396.0" mnemonicParsing="false" onAction="#clearSetBudgetLimitClick" prefHeight="47.0" prefWidth="230.0" style="-fx-background-color: #ff6969;" text="Clear All Fields">
                      <font>
                         <Font name="Monaco" size="13.0" />
                      </font>

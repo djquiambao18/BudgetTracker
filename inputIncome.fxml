@@ -79,12 +79,12 @@
                      <font>
                         <Font name="Monaco" size="25.0" />
                      </font></Button>
-                  <Button fx:id="button_depositCashAmountToBalance" layoutX="21.0" layoutY="227.0" mnemonicParsing="false" onAction="#depositCashAmountClick" prefHeight="111.0" prefWidth="205.0" style="-fx-background-color: #88EAAA;" text="Deposit Cash Amount to Balance" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="button_depositCashAmountToBalance" layoutX="21.0" layoutY="227.0" mnemonicParsing="false" onAction="#depositCashAmountClick" prefHeight="111.0" prefWidth="205.0" style="-fx-background-color: #88EAAA;" text="Deposit Miscellaneous Amount to Balance" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Monaco" size="15.0" />
                      </font>
                   </Button>
-                  <Label layoutX="21.0" layoutY="10.0" prefHeight="106.0" prefWidth="238.0" text="Enter Cash Amount Not Related to Salary/Wages:" wrapText="true">
+                  <Label layoutX="21.0" layoutY="10.0" prefHeight="106.0" prefWidth="336.0" text="Enter Miscellaneous Amount Income Not Related to Salary/Wages:" wrapText="true">
                      <font>
                         <Font name="Monaco" size="21.0" />
                      </font>

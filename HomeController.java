@@ -36,6 +36,8 @@ public class HomeController implements Initializable {
     private Button changeScreenInputIncomebtn;
     @FXML
     private Button changeScreenSetBudgetbtn;
+    @FXML
+    private Button changeScreenSetDatebtn;
     
     private static File file_InOut;
 
@@ -115,6 +117,19 @@ public class HomeController implements Initializable {
         window.show();
     }
 	
+	
+	
+	public void changeScreenToSetDate(ActionEvent event) throws IOException
+    {
+        Parent setSetDateParent = FXMLLoader.load(getClass().getResource("setDate.fxml"));
+        Scene setSetDateScene = new Scene(setSetDateParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(setSetDateScene);
+        window.show();
+    }
 	
 	
     public void setButton_saveFile(){

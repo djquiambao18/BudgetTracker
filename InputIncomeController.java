@@ -35,7 +35,7 @@ public class InputIncomeController
 	@FXML
 	private Button button_resetCashAmount;
 	@FXML
-	private Button button_DisplayTotalCashBalanceOnHand;
+	private Button c;
 
 	//the following variables are placeholder for getting the textfield values:
 	public static String str_hourlyWage;

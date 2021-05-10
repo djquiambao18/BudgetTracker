@@ -24,7 +24,7 @@ public class SummaryController implements Initializable {
     double tempValue = 0.0;
     @FXML
     static ObservableList<PieChart.Data> pieChart_data;
-
+   
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
