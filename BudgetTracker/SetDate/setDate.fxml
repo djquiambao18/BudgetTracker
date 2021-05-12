@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BudgetTracker.SetDate.SetDateController">
+   <top>
+      <HBox prefHeight="55.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="changeScreenToHomebtn" mnemonicParsing="false" onAction="#changeScreenToHome" prefHeight="55.0" prefWidth="107.0" style="-fx-background-color: white;" text="Home">
+               <font>
+                  <Font name="Monaco" size="17.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="809.0" style="-fx-background-color: #88EAAA;" text="Set Date">
+               <font>
+                  <Font name="Monaco" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="label_endDate2" layoutX="25.0" layoutY="280.0" prefHeight="54.0" prefWidth="365.0">
+                     <font>
+                        <Font name="Monaco" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="235.0" prefHeight="37.0" prefWidth="279.0" text="End Date (Default 1 Month):">
+                     <font>
+                        <Font name="Monaco" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="button_resetDate" layoutX="90.0" layoutY="462.0" mnemonicParsing="false" onAction="#resetDateClick" prefHeight="47.0" prefWidth="230.0" style="-fx-background-color: #ff6969;" text="Reset Date">
+                     <font>
+                        <Font name="Monaco" size="13.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="10.0" layoutY="100.0" prefHeight="51.0" prefWidth="399.0" text="Select a Starting Date for your Budget Limit Period:" wrapText="true">
+                     <font>
+                        <Font name="Monaco" size="17.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="startDate" layoutX="22.0" layoutY="161.0" onAction="#datepicker_Start" prefHeight="51.0" prefWidth="365.0" />
+                  <Button fx:id="button_setDate" layoutX="53.0" layoutY="361.0" mnemonicParsing="false" onAction="#setDateClick" prefHeight="82.0" prefWidth="303.0" style="-fx-background-color: #88EAAA;" text="Set Date">
+                     <font>
+                        <Font name="Monaco" size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="543.0" prefWidth="206.0">
+               <children>
+                  <Label prefHeight="50.0" prefWidth="453.0" text="Your current budget limit is" wrapText="true">
+                     <font>
+                        <Font name="Monaco" size="25.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-2.0" layoutY="388.0" prefHeight="3.0" prefWidth="455.0" />
+                  <Label layoutX="35.0" layoutY="404.0" prefHeight="118.0" prefWidth="384.0" text="Note: When you set the date, you will have a timeframe on how long your budget limit will last. If your total expenses reaches ~90% of your budget limit within the time period, you will receive a notification warning you to spend less." wrapText="true" />
+                  <Label fx:id="label_currentBudgetLimit" layoutX="113.0" layoutY="50.0" prefHeight="90.0" prefWidth="225.0" />
+                  <Label layoutX="8.0" layoutY="140.0" prefHeight="55.0" prefWidth="455.0" text="This budget limit is set for the period beginning on..." wrapText="true">
+                     <font>
+                        <Font name="Monaco" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_startDate" layoutX="36.0" layoutY="195.0" prefHeight="54.0" prefWidth="400.0">
+                     <font>
+                        <Font name="Monaco" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="272.0" prefHeight="55.0" prefWidth="455.0" text="ending on..." wrapText="true">
+                     <font>
+                        <Font name="Monaco" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_endDate" layoutX="42.0" layoutY="327.0" prefHeight="54.0" prefWidth="400.0">
+                     <font>
+                        <Font name="Monaco" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

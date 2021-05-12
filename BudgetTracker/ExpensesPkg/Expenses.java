@@ -15,6 +15,7 @@ public class Expenses
     private double subscriptionExpense;
     private double withdrawalAmount;
     private static ArrayList<Expenses> expensesTable;
+
     //Following variables: To hold the data from Log Expenses feature.
     //They will also help with displaying on the Summary pages properly
     private static double totalGrocery;
@@ -210,6 +211,10 @@ public class Expenses
 
     public static double getTotalOthers() {
         return totalOthers;
+    }
+
+    public static double getTotalExpenses(){
+        return (totalGrocery + totalRestaurants + totalOthers + totalMerchandise + totalTransportation + utilitiesExpense + rentExpense);
     }
 
     public static void setExpensesTable(ArrayList<Expenses> expenses){

@@ -150,7 +150,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="900.0" spacing="30.0">
          <children>
-            <Button fx:id="changeScreenInputIncomebtn" layoutX="309.0" layoutY="270.0" mnemonicParsing="false" onAction="#changeScreenToInputIncome" prefHeight="70.0" prefWidth="270.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" text="Input Income">
+            <Button fx:id="changeScreenInputIncomebtn" layoutX="309.0" layoutY="270.0" mnemonicParsing="false" onAction="#changeScreenToSetDate" prefHeight="70.0" prefWidth="270.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 10; -fx-border-radius: 10;" text="Set Date">
                <!--<effect>
                   <ColorAdjust contrast="1.0" />
                </effect>-->

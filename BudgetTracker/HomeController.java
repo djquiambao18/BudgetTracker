@@ -3,6 +3,7 @@ package BudgetTracker;
 import java.io.File;
 import java.io.IOException;
 
+import BudgetTracker.Budget.Budget;
 import BudgetTracker.ExpensesPkg.Expenses;
 import BudgetTracker.SaveFile.SaveFile;
 import BudgetTracker.User.User;
@@ -50,7 +51,7 @@ public class HomeController implements Initializable {
     }
     @FXML
     public void changeScreenExpenses(ActionEvent event) throws IOException {
-        Parent setExpenseParent = FXMLLoader.load(getClass().getResource("ExpensesPkg/logExpenses.fxml"));
+        Parent setExpenseParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ExpensesPkg/logExpenses.fxml")));
         Scene setExpenseScene = new Scene(setExpenseParent);
 
         //This line gets the Stage information
@@ -58,19 +59,13 @@ public class HomeController implements Initializable {
         window.setScene(setExpenseScene);
         window.show();
     }
-    @FXML
-    private Button changeScreenInputIncomebtn;
-    /* when this method is called, it will change the scene to
-     * inputIncome
-     */
 
-    public void changeScreenToInputIncome(ActionEvent event) throws IOException
+    public void changeScreenToSetDate(ActionEvent event) throws IOException
     {
 
-        Parent inputIncomeParent = FXMLLoader.load(getClass().getResource("Income/inputIncome.fxml"));
+        Parent inputIncomeParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SetDate/setDate.fxml")));
         Scene inputIncomeScene = new Scene (inputIncomeParent);
 
-        SaveFile.income_load();
         //This line gets the Stage information
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
@@ -114,7 +109,6 @@ public class HomeController implements Initializable {
 
     public void setButton_saveFile() throws IOException {
 	    SaveFile.saveExpenses(User.getUserExpense());
-	    SaveFile.income_save(User.getUserIncome());
         Alert save_existsAlert = new Alert(Alert.AlertType.INFORMATION);
         save_existsAlert.setContentText("Saved data..");
         save_existsAlert.showAndWait();    //waits for user input to press OK to continue
@@ -140,13 +134,16 @@ public class HomeController implements Initializable {
     // change progress bar color to light green
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+	    Budget budget = new Budget();
         progressBar.setStyle("-fx-accent: #88eaaa;");
         label_balanceFraction.setText(num + "/1500");  // test value, can delete
         if(SaveFile.fileExists())
         {
             try {
+                budget.setBudget(SaveFile.setBudget_load());
                 Expenses.setExpensesTable(SaveFile.loadExpenses());
-            } catch (IOException | NumberFormatException e) {
+
+            } catch (IOException | NumberFormatException | NullPointerException e) {
                 e.printStackTrace();
             }
         }

@@ -1,31 +1,27 @@
 package BudgetTracker.Budget;
 
-public class Budget 
+import BudgetTracker.ExpensesPkg.Expenses;
+
+public class Budget
 {
     private double remainingBudget;
-    private double budgetLimit;
-    private double budgetAmount;
+    private static double budgetAmount;
+    private final double budgetLimit = budgetAmount * 0.1;
     private double budgetPct;
-    private double totalExpenses;
-
+    private static final double totalExpenses = Expenses.getTotalExpenses();
 
     //Budget constructor starts here
-    public Budget(double budgetAmount, double budgetLimit) 
+    public Budget(double amount)
     {
-        budgetAmount= this.budgetLimit;
-        budgetLimit = this.budgetLimit;
+        budgetAmount = amount;
     }
 
-    //Budget ends starts here
-    public Budget(String fromFileRead){
-        fromFileRead.split(",");
-        Double.parseDouble(fromFileRead);
-    }
+    public Budget() {}
 
-    // getRemainigBudget method
+    // getRemainingBudget method
     public double getRemainingBudget()
     {
-        remainingBudget =  budgetLimit - totalExpenses;
+        remainingBudget =  budgetAmount - totalExpenses;
         return remainingBudget;
     }
 
@@ -33,16 +29,19 @@ public class Budget
     public void addMoney(double money)
 
     {
-       budgetLimit = budgetLimit + money;
+        budgetAmount += money;
     }
 
     
     public void setBudget(double amount)
     {
-        this.budgetLimit = amount;
+        budgetAmount = amount;
     }
-    
-    
+
+    public double getBudget()
+    {
+        return budgetAmount;
+    }
     public double getBudgetPct() 
     {
         return remainingBudget / (budgetLimit);

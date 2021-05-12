@@ -115,7 +115,7 @@ public class ExpensesController implements Initializable {
     {
         //Updates the Expenses Table List using the User class static method set User Expense, and passing in the local dataList variable
         if(dataList != null && Expenses.getExpensesTable() != null) {
-            User.setUserExpense(dataList);
+            User.setUserExpense();
             Expenses.setTotalGrocery();
             Expenses.setTotalMerchandise();
             Expenses.setRentExpense();
